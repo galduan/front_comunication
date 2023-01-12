@@ -11,6 +11,7 @@ const Home = () => {
   const cookies = new Cookies();
   const isSafe = cookies.get("isSafe");
   const handleSubmit = (event) => {
+    event.preventDefault();
     create_clients(firstName, lastName, isSafe)
       .then((res) => {
         // console.log(isSafe);
