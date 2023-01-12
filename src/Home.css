@@ -13,6 +13,21 @@ form {
     text-align: left;
 }
 
-.customer-list h2 {
+.customer h2 {
     margin-bottom: 10px;
+}
+.button {
+    padding: 0.5em 1em;
+    border: 2px solid #333;
+    border-radius: 0.5em;
+    background-color: #eee;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+}
+.button:hover {
+    background-color: #ddd;
+}
+.button:active {
+    background-color: #ccc;
 }

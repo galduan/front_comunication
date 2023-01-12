@@ -18,7 +18,7 @@ function Register() {
   function handleSubmit(event) {
     event.preventDefault();
     if (password !== passwordRepeat) {
-      alert("Passwords do not match");
+      setErrorMessage('The passwords do not match, please try again.');
     } else {
       // Perform registration here
       console.log(email, username, password, firstName, lastName, cookies.get("isSafe"));

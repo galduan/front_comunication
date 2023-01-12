@@ -176,7 +176,6 @@ export const validateCode = async (email, code) => {
 
 // create-clients
 export const create_clients = async (fname, lname, isSafe) => {
-  if (isSafe === "true") {
     const response = await axios.post(
       API_URL + "create-clients/",
       {
@@ -191,22 +190,5 @@ export const create_clients = async (fname, lname, isSafe) => {
       }
     );
     return response;
-  } else {
-    const response = await axios.get(
-      API_URL + "create-clients/",
-      {
-        params: {
-          fname: fname,
-          lname: lname,
-        },
-      },
-      {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    return response;
-  }
+
 };

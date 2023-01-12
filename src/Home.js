@@ -6,15 +6,21 @@ import { create_clients } from "./api";
 const Home = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-
   const [customer, setCustomer] = useState("");
+  console.log(customer);
   const cookies = new Cookies();
-
-  const handleSubmit = (e) => {
-    create_clients(firstName, lastName, cookies.get("isSafe")).then((res) => {
-      console.log(res.data.id);
-      setCustomer(res.data.firstName + res.data.lastName);
-    });
+  const isSafe = cookies.get("isSafe");
+  const handleSubmit = (event) => {
+    create_clients(firstName, lastName, isSafe)
+      .then((res) => {
+        // console.log(isSafe);
+        // xss attack
+        setCustomer(firstName + " " + lastName);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // setCustomer(firstName+' '+lastName);
   };
 
   return (
@@ -28,7 +34,7 @@ const Home = () => {
             onChange={(event) => setFirstName(event.target.value)}
             value={firstName}
             required
-          />
+          ></input>
         </label>
         <br />
         <label>
@@ -38,18 +44,21 @@ const Home = () => {
             name="lastName"
             onChange={(event) => setLastName(event.target.value)}
             value={lastName}
-            required
-          />
+          ></input>
         </label>
         <br />
         <button type="submit">Save Customer</button>
-
-        <div className="customer-list">
+        <div className="customer">
           <h2>Customer: </h2>
 
-          <li>
-            {customer}
-          </li>
+          {isSafe==="true" ? (
+            customer
+          ) : (
+            <div
+              security="false"
+              dangerouslySetInnerHTML={{ __html: customer }}
+            />
+          )}
         </div>
       </form>
     </div>
