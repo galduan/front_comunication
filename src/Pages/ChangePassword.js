@@ -19,7 +19,8 @@ const ChangePassword = () => {
     event.preventDefault();
     changePassword(user, passwordOld, newPassword, confirmPassword).then((res)=>{
         if(!res.data.error){
-            history.push('/home')
+            history.push('/')
+            window.location.reload(false);
         }else{
             setErrorMessage(res.data.error)
         }

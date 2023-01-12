@@ -35,7 +35,7 @@ function Register() {
           if (!res.data.error) {
             cookies.set("isAuthenticated", true, { path: "/" });
             cookies.set("userName", res.data.userName, { path: "/" });
-            history.push("/home");
+            history.push("/");
             window.location.reload(false);
           } else {
             if (res.data.unSafe) {

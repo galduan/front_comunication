@@ -27,7 +27,7 @@ function App() {
             <ToggleButton/>
           <ul>
             <li>
-              <Link className="nav-link" to="/home">
+              <Link className="nav-link" to="/">
                 Home
               </Link>
             </li>
@@ -55,7 +55,7 @@ function App() {
         <br />
 
         <Switch>
-          <Route path="/home" component={Home} exact />
+          <Route path="/" component={Home} exact />
           <Route path="/change-password" component={ChangePassword} exact />
         </Switch>
       </div>

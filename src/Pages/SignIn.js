@@ -10,6 +10,7 @@ const SignIn = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const history = useHistory();
   const cookies = new Cookies();
+
   // console.log(cookies.get('isAuthenticated'));
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,7 +23,7 @@ const SignIn = () => {
           cookies.set("isAuthenticated", true, { path: "/" });
           cookies.set("userName", username, { path: "/" });
 
-          history.push("/home");
+          history.push("/");
           window.location.reload(false);
         } else {
           if (res.data.unSafe) {
