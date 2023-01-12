@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// const API_URL = 'https://comunication.herokuapp.com/';
 const API_URL = "http://127.0.0.1:8000/";
 
 // Register user
@@ -9,7 +10,8 @@ export const regiserUser = async (
   password_repeat,
   firstname,
   last_name,
-  username
+  username,
+  isSafe
 ) => {
   const user = {
     email: email,
@@ -19,32 +21,69 @@ export const regiserUser = async (
     last_name: last_name,
     username: username,
   };
-  const response = await axios.post(API_URL + "register/", user, {
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  });
-  return response;
-};
-
-// Login user
-export const login = async (email, password) => {
-  const response = await axios.post(
-    API_URL + "login/",
-    {
-      email: email,
-      password: password,
-    },
-    {
+  console.log(isSafe === "true");
+  if (isSafe === "true") {
+    const response = await axios.post(API_URL + "register/", user, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        
       },
-    }
-  );
-  return response;
+    });
+    return response;
+  } else {
+    const response = await axios.get(
+      API_URL + "register/",
+      { params: user },
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response;
+  }
+};
+
+// Login user
+export const login = async (username, password, isSafe) => {
+  if (isSafe === "true") {
+    const response = await axios.post(
+      API_URL + "login/",
+      {
+        username: username,
+        password: password,
+      },
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response;
+  } else {
+    console.log({
+      username: username,
+      password: password,
+    });
+    const response = await axios.get(
+      API_URL + "login/",
+      {
+        params: {
+          username: username,
+          password: password,
+        },
+      },
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response;
+  }
 };
 
 // Logout user
@@ -118,7 +157,7 @@ export const changePassword = async (
   return response;
 };
 
-export const validateCode = async (email,code) => {
+export const validateCode = async (email, code) => {
   const response = await axios.post(
     API_URL + "verify-code/",
     {
@@ -133,4 +172,41 @@ export const validateCode = async (email,code) => {
     }
   );
   return response;
+};
+
+// create-clients
+export const create_clients = async (fname, lname, isSafe) => {
+  if (isSafe === "true") {
+    const response = await axios.post(
+      API_URL + "create-clients/",
+      {
+        fname: fname,
+        lname: lname,
+      },
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response;
+  } else {
+    const response = await axios.get(
+      API_URL + "create-clients/",
+      {
+        params: {
+          fname: fname,
+          lname: lname,
+        },
+      },
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response;
+  }
 };

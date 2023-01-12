@@ -10,6 +10,7 @@ import Cookies from "universal-cookie";
 import { logout } from "./api";
 import { useHistory } from "react-router-dom";
 import ChangePassword from "./Pages/ChangePassword";
+import ToggleButton from "./toggleB/ToggleButton";
 
 function App() {
   const cookies = new Cookies();
@@ -23,6 +24,7 @@ function App() {
     return (
       <div>
         <nav className="nav-bar">
+            <ToggleButton/>
           <ul>
             <li>
               <Link className="nav-link" to="/home">
@@ -62,6 +64,7 @@ function App() {
     return (
       <div>
         <nav className="nav-bar">
+          <ToggleButton/>
           <ul>
             <li>
               <Link className="nav-link" to="/">

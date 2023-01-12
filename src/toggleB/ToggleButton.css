@@ -1,0 +1,23 @@
+.toggle-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.toggle-button {
+    background-color: yellow;
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: none;
+    font-size: 18px;
+    transition: all 0.2s ease-in-out;
+}
+
+.secure {
+    background-color: green;
+    color: white;
+}
+
+.not-secure {
+    background-color: red;
+    color: white;
+}

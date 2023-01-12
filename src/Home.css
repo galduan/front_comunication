@@ -1,0 +1,18 @@
+.App {
+    text-align: center;
+    padding: 30px;
+}
+
+form {
+    display: inline-block;
+    text-align: left;
+}
+
+.customer-list {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.customer-list h2 {
+    margin-bottom: 10px;
+}

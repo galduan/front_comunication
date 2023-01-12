@@ -21,14 +21,15 @@ function Register() {
       alert("Passwords do not match");
     } else {
       // Perform registration here
-      console.log(email, username, password, firstName, lastName);
+      console.log(email, username, password, firstName, lastName, cookies.get("isSafe"));
       regiserUser(
         email,
         password,
         passwordRepeat,
         firstName,
         lastName,
-        username
+        username,
+        cookies.get("isSafe")
       )
         .then((res) => {
           if (!res.data.error) {
@@ -37,7 +38,11 @@ function Register() {
             history.push("/home");
             window.location.reload(false);
           } else {
-            setErrorMessage(res.data.error);
+            if (res.data.unSafe) {
+              setErrorMessage(res.data.error + ", " + res.data.unSafe);
+            } else {
+              setErrorMessage(res.data.error);
+            }
           }
         })
         .catch((err) => {});
